@@ -1,0 +1,8 @@
+<config>
+	<interface hosts="**" address="10.x.x.x" netmask="255.x.x.x"/>
+	<route hosts="lan*" destination='*' interface='eth0'/>
+	<route hosts="router1" destination="10.0.0.16" netmask="255.255.255.248" gateway="10.0.0.10"/>
+	<route hosts="router1" destination="10.0.0.32" netmask="/29" interface="eth1"/>
+	<route hosts="router2" destination="lan3Host[0]" netmask="/32" interface="eth2"/>	
+	<route hosts="router2 router3" destination="lan1Host[0]" netmask="/32" gateway="router1"/>
+</config>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<OSPFASConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="OSPF.xsd">
+	<!-- Areas -->
+	<Area id='0.0.0.0'>
+		<AddressRange address='router1>switch1' mask='router1>switch1' />
+		<AddressRange address='router3>switch3' mask='router3>switch3' />
+	</Area>
+
+	<Area id='0.0.0.1'>
+		<AddressRange address='router1>router4' mask='router1>router4' />
+		<AddressRange address='router4>router1' mask='router4>router1' />
+		<AddressRange address='router2>router4' mask='router2>router4' />
+		<AddressRange address='router4>router2' mask='router4>router2' />
+		<AddressRange address='router3>router4' mask='router3>router4' />
+		<AddressRange address='router4>router3' mask='router4>router3' />
+	</Area>
+	
+	<Area id='0.0.0.2'>
+		<AddressRange address='router2>switch2' mask='router2>switch2' />
+	</Area>
+
+	<!-- Routers -->
+	<Router name='router1' RFC1583Compatible="true">
+		<BroadcastInterface ifName='eth0' areaID='0.0.0.0' />
+		<PointToPointInterface ifName='ppp0' areaID='0.0.0.1' />
+		<VirtualLink endPointRouterID='router2%routerId' transitAreaID='0.0.0.1' />
+		<VirtualLink endPointRouterID='router3%routerId' transitAreaID='0.0.0.1' />
+	</Router>
+	
+	<Router name='router2' RFC1583Compatible="true">
+		<BroadcastInterface ifName='eth0' areaID='0.0.0.2' />
+		<PointToPointInterface ifName='ppp0' areaID='0.0.0.1' />
+		<VirtualLink endPointRouterID='router1%routerId' transitAreaID='0.0.0.1' />
+	</Router>
+
+	<Router name='router3' RFC1583Compatible="true">
+		<BroadcastInterface ifName='eth0' areaID='0.0.0.0' />
+		<PointToPointInterface ifName='ppp0' areaID='0.0.0.1' />
+		<VirtualLink endPointRouterID='router1%routerId' transitAreaID='0.0.0.1' />
+	</Router>
+	
+	<Router name='router4' RFC1583Compatible="true">
+		<PointToPointInterface ifName='ppp0' areaID='0.0.0.1' />
+		<PointToPointInterface ifName='ppp1' areaID='0.0.0.1' />
+		<PointToPointInterface ifName='ppp2' areaID='0.0.0.1' />
+		<ExternalInterface ifName='ppp3' advertisedExternalNetworkAddress='router4>extrouter' advertisedExternalNetworkMask='router4>extrouter' />
+	</Router>
+</OSPFASConfig>

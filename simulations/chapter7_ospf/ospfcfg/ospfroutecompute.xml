@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<OSPFASConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="OSPF.xsd">
+	<Router name='RA'>
+		<HostInterface ifName='eth0' attachedHost='host1' linkCost='0' />
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='5' />
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='3' />
+	</Router>
+	
+	<Router name='RB[0]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='1' />
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='3' />
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='6' />
+	</Router>
+	<Router name='RB[1]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='8' />
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='7' />
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='6' />
+	</Router>
+	
+	<Router name='RC[0]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='6' />
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='8' />
+	</Router>
+	<Router name='RC[1]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='3' />
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='5' />
+	</Router>
+	<Router name='RC[2]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='3' />
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='3' />
+	</Router>
+	<Router name='RC[3]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='8' />
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='4' />
+	</Router>
+	
+	<Router name='RD[0]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='2' />
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='2' />
+	</Router>
+	<Router name='RD[1]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth4' interfaceOutputCost='1'/>
+		<BroadcastInterface ifName='eth5' interfaceOutputCost='2' />
+	</Router>
+	<Router name='RD[2]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='3' />
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='3' />
+	</Router>
+	
+	<Router name='RE[0]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='3' />
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='5' />
+	</Router>
+	<Router name='RE[1]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='5' />
+		<BroadcastInterface ifName='eth4' interfaceOutputCost='2' />
+	</Router>
+	<Router name='RE[2]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='6' />
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='6' />
+	</Router>
+	
+	<Router name='RF[0]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='4' />
+	</Router>
+	<Router name='RF[1]'>
+		<BroadcastInterface ifName='eth0' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth3' interfaceOutputCost='3'/>
+	</Router>
+	
+	<Router name='RG'>
+		<HostInterface ifName='eth0' attachedHost='host2' linkCost='0' />
+		<BroadcastInterface ifName='eth1' interfaceOutputCost='99'/>
+		<BroadcastInterface ifName='eth2' interfaceOutputCost='99'/>
+	</Router>
+	
+</OSPFASConfig>

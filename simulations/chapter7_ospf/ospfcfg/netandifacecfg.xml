@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<OSPFASConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="OSPF.xsd">
+	<!-- Areas -->
+	<Area id='0.0.0.0'>
+		<AddressRange address='router1>router2' mask='255.255.255.252' status='Advertise' />
+		<AddressRange address='router2>router1' mask='router2>router1' status='Advertise' />
+		
+		<AddressRange address='router1>router3' mask='router1>router3' />
+		<AddressRange address='router3>router1' mask='router3>router1' />
+		
+		<AddressRange address='router1>router4' mask='router1>router4' />
+		<AddressRange address='router4>router1' mask='router4>router1' />
+		
+		<AddressRange address='router1>router5' mask='router1>router5' />
+		<AddressRange address='router5>router1' mask='router5>router1' />
+		
+		<AddressRange address='router4>router5' mask='router4>router5' />
+		<AddressRange address='router5>router4' mask='router5>router4' />
+		
+		<AddressRange address='router1>switch'  mask='router1>switch'  />
+		
+		<AddressRange address='router2>router6' mask='router2>router6' />
+		<AddressRange address='router6>router2' mask='router2>router6' />
+		
+		<AddressRange address='router6>router7' mask='router6>router7' />
+		<AddressRange address='router7>router6' mask='router7>router6' />
+
+		<AddressRange address='router2>fr' mask='router2>fr' />
+		<AddressRange address='fr>router2' mask='fr>router2' />
+		
+		<AddressRange address='router8>fr' mask='router8>fr' />
+		<AddressRange address='fr>router8' mask='fr>router8' />
+		
+		<AddressRange address='router1%routerId' mask='255.255.255.255' />
+		<AddressRange address='router2%routerId' mask='255.255.255.255' />
+	</Area>
+	
+	<!-- Routers -->
+	<Router name='router1'>
+		<LoopbackInterface ifName='lo0' areaID='0.0.0.0' linkCost='40' />	
+		<BroadcastInterface toward='router2' areaID='0.0.0.0' interfaceOutputCost='0' />	
+		<PointToPointInterface toward='router3' areaID='0.0.0.0' interfaceOutputCost='10' />
+		<BroadcastInterface toward='router4' areaID='0.0.0.0' interfaceOutputCost='20' />
+		<BroadcastInterface toward='router5' areaID='0.0.0.0' interfaceOutputCost='20' />
+		<HostInterface toward='switch' areaID='0.0.0.0' attachedHost='host1' linkCost='30' />
+		<HostInterface toward='switch' areaID='0.0.0.0' attachedHost='host2' linkCost='30' />
+	</Router>
+	
+	<Router name='router2'>
+		<LoopbackInterface ifName='lo0' areaID='0.0.0.0' linkCost='40' />
+		<BroadcastInterface toward='router1' areaID='0.0.0.0' interfaceOutputCost='0' />	
+		<PointToMultiPointInterface toward='router6' areaID='0.0.0.0' inferfaceOutPutCost='50'>
+			<PointToMultiPointNeighbor>router6</PointToMultiPointNeighbor>
+			<PointToMultiPointNeighbor>router7</PointToMultiPointNeighbor>
+		</PointToMultiPointInterface>
+		<NBMAInterface toward='fr' areaID='0.0.0.0' inferfaceOutPutCost='60'>
+			<NBMANeighborList>
+				<NBMANeighbor networkInterfaceAddress='router8%eth0' neighborPriority='1'/>
+			</NBMANeighborList>
+		</NBMAInterface>
+		<ExternalInterface toward='router9' advertisedExternalNetworkAddress='router2>router9' advertisedExternalNetworkMask='router2>router9' externalInterfaceOutputCost='70' externalInterfaceOutputType="Type1" />
+	</Router>
+	
+	<Router name='router3'>
+		<PointToPointInterface toward='router1' />
+	</Router>
+	
+	<Router name='router4'>
+		<BroadcastInterface ifName='eth0' />
+		<BroadcastInterface ifName='eth1' />
+	</Router>
+			
+	<Router name='router5'>
+		<BroadcastInterface ifName='eth0' />
+		<BroadcastInterface ifName='eth1' />
+	</Router>
+	
+	<Router name='router6'>
+		<PointToMultiPointInterface toward='router2'>
+			<PointToMultiPointNeighbor>router2</PointToMultiPointNeighbor>
+		</PointToMultiPointInterface>
+		<PointToMultiPointInterface toward='router7'>
+			<PointToMultiPointNeighbor>router7</PointToMultiPointNeighbor>
+		</PointToMultiPointInterface>
+				
+	</Router>
+	
+	<Router name='router7'>
+		<PointToMultiPointInterface toward='router6'>
+			<PointToMultiPointNeighbor>router2</PointToMultiPointNeighbor>
+			<PointToMultiPointNeighbor>router6</PointToMultiPointNeighbor>
+		</PointToMultiPointInterface>
+	</Router>
+	
+	<Router name='router8'>
+		<NBMAInterface toward='fr' areaID='0.0.0.0' inferfaceOutPutCost='60'>
+			<NBMANeighborList>
+				<NBMANeighbor networkInterfaceAddress='router2%eth2' neighborPriority='1'/>
+			</NBMANeighborList>
+		</NBMAInterface>
+	</Router>
+	
+	<Router name='fr'>
+		<BroadcastInterface ifName='eth0' />
+		<BroadcastInterface ifName='eth1' />
+	</Router>
+
+</OSPFASConfig>

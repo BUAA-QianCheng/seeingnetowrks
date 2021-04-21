@@ -1,0 +1,10 @@
+<config>
+	<interface hosts='router1' names='eth0' address='10.1.1.x' netmask='255.255.255.x' />
+	<interface hosts='router2' names='eth0' address='10.2.2.x' netmask='255.255.255.x' />
+	<interface hosts='router3' names='eth0' address='10.3.3.x' netmask='255.255.255.x' />
+
+	<interface among='router1 router4' address='10.1.4.x' netmask='255.255.255.x' />
+	<interface among='router2 router4' address='10.2.4.x' netmask='255.255.255.x' />
+	<interface among='router3 router4' address='10.3.4.x' netmask='255.255.255.x' />
+	<interface among='router4 extrouter' address='10.4.0.x' netmask='255.255.255.x' />
+</config>

@@ -1,0 +1,89 @@
+<?xml version='1.0'?>
+<OSPFASConfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='OSPF.xsd'>
+	<!-- Areas -->
+	<Area id='0.0.0.0'>
+		<AddressRange address='area0_r1>area0_r2' mask='area0_r1>area0_r2' />
+		<AddressRange address='area0_r1>area0_r3' mask='area0_r1>area0_r3' />
+		
+		<AddressRange address='area0_r2>area0_r1' mask='area0_r2>area0_r1' />
+		<AddressRange address='area0_r2>area0_r3' mask='area0_r2>area0_r3' />
+		
+		<AddressRange address='area0_r3>area0_r1' mask='area0_r3>area0_r1' />
+		<AddressRange address='area0_r3>area0_r2' mask='area0_r3>area0_r2' />
+		
+		<AddressRange address='area0_r4>switch'   mask='area0_r4>switch' />
+	</Area>
+
+	<Area id='0.0.1.0'>
+		<AddressRange address='area0_r1>area1_r1' mask='area0_r1>area1_r1' />
+		<AddressRange address='area0_r4>area1_r2' mask='area0_r4>area1_r2' />
+		
+		<AddressRange address='area1_r1>area0_r1' mask='area1_r1>area0_r1' />
+		<AddressRange address='area1_r1>area1_r2' mask='area1_r1>area1_r2' />
+		<AddressRange address='area1_r1>area2_r1' mask='area1_r1>area1_r2' />
+
+		<AddressRange address='area1_r2>area0_r4' mask='area1_r2>area0_r4' />
+		<AddressRange address='area1_r2>area1_r1' mask='area1_r2>area1_r1' />
+		
+		<AddressRange address='area2_r1>area1_r1' mask='area2_r1>area1_r1' />
+	</Area>
+	
+	<Area id='0.0.2.0'>
+		<AddressRange address='area2_r1>area2_r2' mask='area2_r1>area2_r2' />
+		<AddressRange address='area2_r1>area2_r3' mask='area2_r1>area2_r3' />
+		
+		<AddressRange address='area2_r2>area2_r3' mask='area2_r2>area2_r3' />	
+		<AddressRange address='area2_r2>area2_r1' mask='area2_r2>area2_r3' />
+		
+		<AddressRange address='area2_r3>area2_r1' mask='area2_r3>area2_r1' />
+		<AddressRange address='area2_r3>area2_r2' mask='area2_r3>area2_r2' />
+	</Area>
+	
+	<!-- Routers -->
+	<Router name='area0_r1' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area0_r2' areaID='0.0.0.0' />
+		<PointToPointInterface toward='area0_r3' areaID='0.0.0.0' />
+		<PointToPointInterface toward='area1_r1' areaID='0.0.1.0' />
+		<VirtualLink endPointRouterID='area0_r4%routerId' transitAreaID='0.0.1.0' />
+		<VirtualLink endPointRouterID='area2_r1%routerId' transitAreaID='0.0.1.0' />
+	</Router>
+	<Router name='area0_r2' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area0_r1' areaID='0.0.0.0' />
+		<PointToPointInterface toward='area0_r3' areaID='0.0.0.0' />
+	</Router>
+	<Router name='area0_r3' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area0_r1' areaID='0.0.0.0' />
+		<PointToPointInterface toward='area0_r2' areaID='0.0.0.0' />
+	</Router>
+	<Router name='area0_r4' RFC1583Compatible='true'>
+		<BroadcastInterface toward='switch' areaID='0.0.0.0' interfaceMode='Passive' />
+		<PointToPointInterface toward='area1_r2' areaID='0.0.1.0' />
+		<VirtualLink endPointRouterID='area0_r1%routerId' transitAreaID='0.0.1.0' />
+	</Router>
+	
+	<Router name='area1_r1' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area0_r1' areaID='0.0.1.0' />
+		<PointToPointInterface toward='area1_r2' areaID='0.0.1.0' />
+		<PointToPointInterface toward='area2_r1' areaID='0.0.1.0' />
+		<ExternalInterface toward='extrouter' advertisedExternalNetworkAddress='area1_r1>extrouter' advertisedExternalNetworkMask='area1_r1>extrouter' />
+	</Router>
+	<Router name='area1_r2' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area1_r1' areaID='0.0.1.0' />
+		<PointToPointInterface toward='area0_r4' areaID='0.0.1.0' />
+	</Router>
+	
+	<Router name='area2_r1' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area1_r1' areaID='0.0.1.0' />
+		<VirtualLink endPointRouterID='area0_r1%routerId' transitAreaID='0.0.1.0' />
+		<PointToPointInterface toward='area2_r2' areaID='0.0.2.0' />
+		<PointToPointInterface toward='area2_r3' areaID='0.0.2.0' />
+	</Router>
+	<Router name='area2_r2' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area2_r1' areaID='0.0.2.0' />
+		<PointToPointInterface toward='area2_r3' areaID='0.0.2.0' />
+	</Router>	
+	<Router name='area2_r3' RFC1583Compatible='true'>
+		<PointToPointInterface toward='area2_r1' areaID='0.0.2.0' />
+		<PointToPointInterface toward='area2_r2' areaID='0.0.2.0' />
+	</Router>		
+</OSPFASConfig>

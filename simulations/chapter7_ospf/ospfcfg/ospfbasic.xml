@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<OSPFASConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="OSPF.xsd">
+	<!-- Areas -->
+	<Area id='0.0.0.0'>
+		<AddressRange address='router1>router2' mask='router1>router2' />
+		<AddressRange address='router2>router1' mask='router2>router1' />
+	</Area>
+	
+	<!-- Routers -->
+	<Router name='router1'>
+		<BroadcastInterface ifName='eth0' areaID='0.0.0.0' />
+	</Router>
+	
+	<Router name='router2'>
+		<BroadcastInterface toward='router1' areaID='0.0.0.0' />
+	</Router>
+</OSPFASConfig>

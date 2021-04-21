@@ -1,0 +1,12 @@
+<config>
+	<interface among='router1 router2' address='10.1.2.x' netmask='255.255.255.x' />
+	<interface among='router1 router3' address='10.1.3.x' netmask='255.255.255.x' />
+	<interface among='router1 router4' address='10.1.4.x' netmask='255.255.255.x' />
+	<interface among='router1 router5' address='10.1.3.x' netmask='255.255.255.x' />
+	<interface among='router4 router5' address='10.4.5.x' netmask='255.255.255.x' />
+	<interface among='router1 host*' address='10.1.100.x' netmask='255.255.255.x' />
+	<interface among='router2 router6' address='10.2.6.x' netmask='255.255.255.x' />
+	<interface among='router6 router7' address='10.6.7.x' netmask='255.255.255.x' />		
+	<interface among='router2 fr router8' address='10.2.8.x' netmask='255.255.255.x' />
+	<interface among='router2 router9' address='10.2.9.x' netmask='255.255.255.x' />
+</config>

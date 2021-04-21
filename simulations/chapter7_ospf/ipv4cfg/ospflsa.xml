@@ -1,0 +1,12 @@
+<config>
+	<interface among='area0_r1 area0_r2 area0_r3' address='10.0.0.x' netmask='255.255.255.x'/>
+	<interface among='area0_r1 area1_r1' address='10.0.1.x' netmask='255.255.255.x'/>
+	<interface among='area0_r4 area1_r2 ' address='10.0.1.x' netmask='255.255.255.x'/>
+	<interface hosts='area0_r4' names='eth0' address='10.0.0.x' netmask='255.255.255.x'/>	
+	<interface among='area1_r1 area1_r2' address='10.1.1.x' netmask='255.255.255.x'/>
+	<interface among='area1_r1 area2_r1' address='10.1.2.x' netmask='255.255.255.x'/>
+	<interface among='area1_r1 extrouter' address='10.1.100.x' netmask='255.255.255.x'/>
+	<interface among='area2_r1 area2_r2 area2_r3' address='10.2.2.x' netmask='255.255.255.x'/>
+	
+	<route hosts='extrouter' destination='*' netmask='*' interface='ppp0' />
+</config>

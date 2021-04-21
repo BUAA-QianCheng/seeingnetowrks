@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<OSPFASConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="OSPF.xsd">
+	<!-- Areas -->
+	<Area id='0.0.0.0'>
+		<AddressRange address='router1>router2' mask='router1>router2' />
+		<AddressRange address='router2>router1' mask='router2>router1' />
+		
+		<AddressRange address='router1>router3' mask='router1>router3' />
+		<AddressRange address='router3>router1' mask='router3>router1' />
+		
+		<AddressRange address='router2>router4' mask='router2>router4' />
+		<AddressRange address='router4>router2' mask='router4>router2' />
+
+		<AddressRange address='router1>switch'  mask='router1>switch'  />
+		<AddressRange address='router1%routerId' mask='255.255.255.255' />
+		<AddressRange address='router2%routerId' mask='255.255.255.255' />
+	</Area>
+	
+	<!-- Routers -->
+	<Router name='router1'>
+		<BroadcastInterface toward='router2' areaID='0.0.0.0' interfaceOutputCost='10' />	
+		<PointToPointInterface toward='router3' areaID='0.0.0.0' interfaceOutputCost='20' />
+		<HostInterface toward='switch' areaID='0.0.0.0' attachedHost='host1' linkCost='30' />
+		<HostInterface toward='switch' areaID='0.0.0.0' attachedHost='host2' linkCost='30' />
+		<LoopbackInterface ifName='lo0' areaID='0.0.0.0' linkCost='40' />
+	</Router>
+	
+	<Router name='router2'>
+		<LoopbackInterface ifName='lo0' areaID='0.0.0.0' linkCost='40' />
+		<BroadcastInterface toward='router1' areaID='0.0.0.0' interfaceOutputCost='100' />	
+		<PointToMultiPointInterface toward='router4' areaID='0.0.0.0' inferfaceOutPutCost='50'>
+			<PointToMultiPointNeighbor>router4</PointToMultiPointNeighbor>
+		</PointToMultiPointInterface>
+		<ExternalInterface ifName='ppp1' advertisedExternalNetworkAddress='router2>router5' advertisedExternalNetworkMask='router2>router5' externalInterfaceOutputCost='60' />
+	</Router>
+	
+	<Router name='router3'>
+		<PointToPointInterface toward='router1' />
+	</Router>
+	
+	<Router name='router4'>
+		<PointToMultiPointInterface toward='router2' areaID='0.0.0.0' inferfaceOutPutCost='50'>
+			<PointToMultiPointNeighbor>router2</PointToMultiPointNeighbor>
+		</PointToMultiPointInterface>
+	</Router>
+</OSPFASConfig>
