@@ -1,0 +1,3 @@
+package seeingnetworks;
+
+@license(LGPL);
